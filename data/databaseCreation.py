@@ -2,7 +2,7 @@ import sqlite3
 
 
 #  creates or opens a file called bank.db
-db = sqlite3.connect('data/bank.db')
+db = sqlite3.connect('../data/bank.db')
 
 # cursor object used to execute SQL statements
 cursor = db.cursor()
