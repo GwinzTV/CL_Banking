@@ -1,7 +1,7 @@
 import sqlite3
 
 class Model:
-    db = sqlite3.connect('data/bank.db')
+    db = sqlite3.connect('../data/bank.db')
     cursor = db.cursor()
 
     def save(self):
