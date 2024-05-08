@@ -1,4 +1,4 @@
-from utils import draw_line, intro, success, fail, buffer
+from utils import intro, success, fail, buffer
 
 def welcome():
     print(intro())
