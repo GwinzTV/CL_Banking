@@ -1,5 +1,5 @@
 from hashlib import sha1
-from views import welcome, login_menu, main_menu, get_user_details, get_deposit_info, get_withdrawal_info, display_result
+from views import welcome, login_menu, main_menu, get_user_details, get_deposit_info, get_withdrawal_info, display_result, goodbye, loading, display_balance
 from models import Account, User
 
 class Controller:
@@ -46,26 +46,44 @@ class Controller:
         new_account.save()
     
     def __main_menu(self):
-        option = input(main_menu(self.__current_user))
+        user = self.__current_user
+        option = input(main_menu(user))
         if option == "1":
             self.__deposit()
         elif option == "2":
-            self.__withdraw() # need implementing
+            self.__withdraw()
         elif option == "3":
             self.__check_balance() # need implementing
         elif option == "0":
+            print(goodbye(user))
             exit()
 
     def __deposit(self):
         amount = get_deposit_info()
-        username = self.__current_user.get_username()
-        new_deposit = Account(self.__current_user.get_user_id(username), amount)
+        user = self.__current_user
+        username = user.get_username()
+        new_deposit = Account(user.get_user_id(username), amount)
         new_deposit.set_deposit()
         result = new_deposit.save()
+        loading('deposit')
         display_result(result)
 
     def __withdraw(self):
-        pass
+        amount = get_withdrawal_info()
+        user = self.__current_user
+        username = user.get_username()
+        new_withdrawal = Account(user.get_user_id(username), amount)
+        new_withdrawal.set_withdraw()
+        result = new_withdrawal.save()
+        loading('withdrawal')
+        display_result(result)
 
     def __check_balance(self):
-        pass
+        user = self.__current_user
+        username = user.get_username()
+        load_balance = Account(user.get_user_id(username), 0)
+        balance = load_balance.return_balance()
+        loading('balance')
+        display_balance(balance)
+        input('Press Enter to continue')
+        print()

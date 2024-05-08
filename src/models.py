@@ -98,6 +98,7 @@ class Account(User):
         self.user_id = user_id
         self.username = ""
         self.amount = amount
+        self.balance = 0
         self.deposit = False
         self.withdraw = False
 
@@ -109,6 +110,19 @@ class Account(User):
 
     def get_amount(self):
         return self.amount
+    
+    def get_balance(self):
+        query = "SELECT balance FROM account WHERE user_id = ?"
+        self.cursor.execute(query, (self.user_id,))
+        balance = self.cursor.fetchone()
+        return balance[0]
+    
+    def set_balance(self):
+        self.balance = self.get_balance()
+    
+    def return_balance(self):
+        self.set_balance()
+        return self.balance
 
     def save(self):
         # deposit
@@ -118,10 +132,13 @@ class Account(User):
             self.db.commit()
             return True
         if self.withdraw:
-            query = "UPDATE account SET balance = balance - ? WHERE user_id = ?"
-            self.cursor.execute(query, (self.amount, self.user_id))
-            self.db.commit()
-            return True
+            self.set_balance()
+            if self.amount < self.balance:
+                query = "UPDATE account SET balance = balance - ? WHERE user_id = ?"
+                self.cursor.execute(query, (self.amount, self.user_id))
+                self.db.commit()
+                return True
+            return False
         else:
             query = "INSERT INTO account (user_id, username, balance) VALUES (?, ?, ?)"
             self.cursor.execute(query, (self.user_id, self.username, self.amount))

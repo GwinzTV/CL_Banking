@@ -1,4 +1,4 @@
-from utils import draw_line, intro, success, fail
+from utils import draw_line, intro, success, fail, buffer
 
 def welcome():
     print(intro())
@@ -32,8 +32,16 @@ def get_deposit_info():
 def get_withdrawal_info():
     while True:
         amount = int(input("Withdrawal amount (max £50):\n£"))
-        if amount < 51:
+        if amount < 510:
             return amount
+        
+def loading(action):
+    buffer(action)
+
+def display_balance(balance):
+    message = '\nYour Current Balance:\n'
+    message += f'    £{balance}\n'
+    print(message)
         
 def display_result(result):
     if result:
@@ -49,3 +57,17 @@ def main_menu(user):
     menu += "[3] Check Balance\n"
     menu += "[0] Quit\n:"
     return menu
+
+def goodbye(user):
+    message = "\n\n***********************************\n"
+    message += f"       Thank you {user.get_name()}\n"
+    message += "***********************************\n"
+    message += " Command Line Banking Session Over\n\n"
+    message += "___________________________________\n"
+    message += "|=     Credits to Developer:     =|\n"
+    message += "|=       Joshua Iyinkanmi        =|\n"
+    message += "|_________________________________|\n"
+    message += "***********************************\n"
+    message += "**   Copyright \u00A9 2024 GwinzTV    **\n"
+    message += "***********************************\n"
+    return message
