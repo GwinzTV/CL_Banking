@@ -9,9 +9,9 @@ cursor = db.cursor()
 
 # create tables
 cursor.execute('''
-    CREATE TABLE users(user_id INTEGER PRIMARY KEY, username TEXT, password VARCHAR(40), name TEXT, surname, TEXT)
+    CREATE TABLE users(user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password VARCHAR(40), name TEXT, surname, TEXT)
 ''')
 cursor.execute('''
-    CREATE TABLE account(user_id INTEGER PRIMARY KEY, username TEXT, balance INTEGER, FOREIGN KEY (user_id) REFERENCES users(user_id))
+    CREATE TABLE account(account_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, username TEXT, balance INTEGER, FOREIGN KEY (user_id) REFERENCES users(user_id))
 ''')
 db.commit()

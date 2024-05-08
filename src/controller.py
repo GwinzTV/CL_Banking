@@ -1,5 +1,5 @@
 from hashlib import sha1
-from views import welcome, login_menu, main_menu, get_user_details, get_deposit_info
+from views import welcome, login_menu, main_menu, get_user_details, get_deposit_info, get_withdrawal_info, display_result
 from models import Account, User
 
 class Controller:
@@ -40,6 +40,10 @@ class Controller:
         new_user.set_name(username)
         new_user.save()
         self.__current_user = new_user
+        user_id = new_user.get_user_id(username)
+        # creates a new account with opening balance of £1000
+        new_account = Account(user_id, 1000)
+        new_account.save()
     
     def __main_menu(self):
         option = input(main_menu(self.__current_user))
@@ -53,24 +57,15 @@ class Controller:
             exit()
 
     def __deposit(self):
-        amount, accNum = get_deposit_info()
-        new_deposit = Account(self.__current_user.get_name(), amount, accNum)
-        new_deposit.save()
+        amount = get_deposit_info()
+        username = self.__current_user.get_username()
+        new_deposit = Account(self.__current_user.get_user_id(username), amount)
+        new_deposit.set_deposit()
+        result = new_deposit.save()
+        display_result(result)
 
     def __withdraw(self):
         pass
 
     def __check_balance(self):
         pass
-
-
-# ###################################################################### #
-# just for manual test purposes, make sure to remove from final code!!!! #
-# ###################################################################### #
-def main():
-    con = Controller()
-    con.start()
-
-
-if __name__ == "__main__":
-    main()

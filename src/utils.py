@@ -10,3 +10,9 @@ def intro():
 ***********************************************
 '''
     return output
+
+def success():
+    input("*** Sucessful Transaction ***\n    Press Enter to continue")
+
+def fail():
+    input("*** Unsucessful Transaction ***\n    Press Enter to continue")

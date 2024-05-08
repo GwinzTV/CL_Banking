@@ -1,4 +1,4 @@
-from utils import draw_line, intro
+from utils import draw_line, intro, success, fail
 
 def welcome():
     print(intro())
@@ -24,9 +24,22 @@ def get_user_details(register=False):
     return (username, password)
 
 def get_deposit_info():
-    amount = input("Deposit amount:\n£")
-    accNum = input("Enter recipient account number:\n")
-    return (amount, accNum)
+    while True:
+        amount = int(input("Deposit amount (max £50):\n£"))
+        if amount < 51:
+            return amount
+
+def get_withdrawal_info():
+    while True:
+        amount = int(input("Withdrawal amount (max £50):\n£"))
+        if amount < 51:
+            return amount
+        
+def display_result(result):
+    if result:
+        success()
+    else:
+        fail()
 
 def main_menu(user):
     menu = f"Welcome {user.get_name()}\n"
