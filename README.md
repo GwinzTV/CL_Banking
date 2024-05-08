@@ -3,9 +3,6 @@
 ### Contents
 - [Introduction](#introduction)
 - [About the Project](#about-the-project)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
 - [How to Run Application](#how-to-run-application)
 
 ## Introduction
@@ -29,9 +26,31 @@ The Bank Management Application is built with a focus on security, modularity, a
 ## Getting Started 🚀
 
 ### How to Run Application
-<!-- I will add this section myself -->
+**Disclaimer:** You must install Git and Python(v3.12 or newer) on your computer before proceeding with these instructions.
+If you have these installed already, go ahead with the steps below.
 
-### Feedback
+Open your terminal and do the following:
+1. **Installation**:
+First of all, clone this repository
+   ```bash
+   git clone https://github.com/GwinzTV/CL_Banking.git
+   cd CL_Banking
+
+2. **Create Database**:
+Next, create the database using the setup script
+   ```bash
+   cd data
+   python databaseCreation.py
+You should see a file called "bank.db" in the data folder
+
+3. **Run Application**:
+Assuming you are still in the data in the terminal, run the terminal commands:
+   ```bash
+   cd ../src
+   python main.py
+You should see the Application start view.
+
+## Feedback
 I'm constantly striving to improve the Bank Management Application. If you have any feedback, suggestions, or bug reports, please feel free to [open an issue](https://github.com/GwinzTV/CL_Banking/issues) on GitHub.
 
 ### Developer
