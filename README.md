@@ -48,7 +48,24 @@ Assuming you are still in the data in the terminal, run the terminal commands:
    ```bash
    cd ../src
    python main.py
-You should see the Application start view.
+You should see the Application start view
+
+## Here are some shots of the app:
+
+![Bank Management App](https://github.com/GwinzTV/images/blob/main/CL_Banking/welcome.png?raw=true)
+
+After account creation or logging in:
+
+![Bank Management App](https://github.com/GwinzTV/images/blob/main/CL_Banking/loggedin.png?raw=true)
+
+Viewing account balance:
+
+![Bank Management App](https://github.com/GwinzTV/images/blob/main/CL_Banking/showBalance.png?raw=true)
+
+Exiting application:
+
+![Bank Management App](https://github.com/GwinzTV/images/blob/main/CL_Banking/exit.png?raw=true)
+
 
 ## Feedback
 I'm constantly striving to improve the Bank Management Application. If you have any feedback, suggestions, or bug reports, please feel free to [open an issue](https://github.com/GwinzTV/CL_Banking/issues) on GitHub.
