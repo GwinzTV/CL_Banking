@@ -32,7 +32,7 @@ def get_deposit_info():
 def get_withdrawal_info():
     while True:
         amount = int(input("Withdrawal amount (max £50):\n£"))
-        if amount < 510:
+        if amount < 51:
             return amount
         
 def loading(action):
